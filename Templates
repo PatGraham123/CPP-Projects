@@ -1,0 +1,48 @@
+#include <iostream>
+//#include <string>
+//#include <iomanip>
+using namespace std;
+
+class Sample
+{
+
+  public:
+  template <class T>
+  T maximum(T one, T two)
+  {
+    if (one > two)
+    {
+      return one;
+    }
+    else
+    {
+      return two;
+    }
+  }
+  template <class T>
+  T minimum(T one, T two)
+  {
+    if (one < two)
+    {
+      return one;
+    }
+    else
+    {
+      return two;
+    }
+  }
+
+};
+
+
+int main() {
+
+  Sample obj1;
+  cout << obj1.maximum(15,32) << '\n';
+  cout << obj1.maximum(100.99,150.75) << '\n';
+
+  cout << obj1.minimum(37.75,12.1) << '\n';
+  cout << obj1.minimum(15,32) << '\n';
+
+return 0;
+}
