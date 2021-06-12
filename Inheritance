@@ -1,0 +1,203 @@
+/*
+  This is an incredibly simple program but it demonstrates inheritance as well as constructors and access specifiers.
+*/
+
+#include <iostream>
+#include<string>
+#include <iomanip>
+using namespace std;
+
+class Employee {
+
+  protected:
+  string empName;
+  string empNum;
+  string hireDate;
+
+  public:
+  string name;
+  string num;
+  string date;
+  //Default Constructor
+  Employee()
+  {
+    empName = "Test";
+    empNum = "000";
+    hireDate = "00/00/0000";\
+
+    
+  }
+
+  //Constructor
+  Employee(string name, string num, string date)
+  {
+    empName = name;
+    empNum = num;
+    hireDate = date;
+  }
+
+  //Inputs a string
+  void getName()
+  {
+    cout << "Please enter a name: ";
+    getline(cin,name);
+    
+  }
+  string setName()
+  {
+    empName = name;
+    return empName;
+  }
+
+  //Passed a string
+  string getAndSetName(string x)
+  {
+    empName = x;
+    return empName;
+  }
+
+  //Inputs a string
+  void getNum()
+  {
+    cout << "Please enter an employee number: ";
+    getline(cin,num);
+  }
+  string setNum()
+  {
+    empNum = num;
+    return empNum;
+  }
+
+  //Passed a string
+  string getAndSetNum(string y)
+  {
+    empNum = y;
+    return empNum;
+  }
+
+  //Inputs a string
+  void getDate()
+  {
+    cout << "Please enter the hire date: ";
+    getline(cin,date);
+  }
+  string setDate()
+  {
+    hireDate = date;
+    return hireDate;
+  }
+
+  //Passed a string
+  string getAndSetDate(string z)
+  {
+    hireDate = z;
+    return hireDate;
+  }
+};
+
+class ProductionWorker : public Employee
+{
+
+private:
+int shift;
+double rate;
+
+
+
+public:
+int empShift = 0;
+double payRate = 0;
+//Default Constructor
+ProductionWorker()
+{
+  shift = 0;
+  rate = 0.00;
+  
+
+}
+
+//Constructor
+ProductionWorker(string name, string num, string date, int empShift, double payRate)
+{
+
+  empName = name;
+  empNum = num;
+  hireDate = date;
+  shift = empShift;
+  rate = payRate;
+  cout << "Name: " << empName << '\n';
+  cout << "Employee Number: " << empNum << '\n';
+  cout << "Hire Date: " << hireDate << '\n';
+  cout << "Shift: " << shift << '\n';
+  cout <<"Payrate: " << setprecision(2) << fixed << rate << '\n';
+}
+
+void getShift()
+{
+  cout << "Please enter a shift (1,2,3...) : ";
+  cin >> empShift;
+  cin.ignore();
+}
+int setShift()
+{
+  shift = empShift;
+  return shift;
+}
+
+int getAndSetShift(int empShift)
+{
+  shift = empShift;
+  return shift;
+}
+
+void getRate()
+{
+  cout << "Please enter the hourly rate: ";
+  cin >> payRate;
+}
+double setRate()
+{
+  rate = payRate;
+  return rate;
+}
+
+double getAndSetRate(double payRate)
+{
+  rate = payRate;
+  return rate;
+}
+
+
+
+
+};
+
+int main() {
+
+  
+  ProductionWorker empOne;
+  
+  empOne.getName();
+  empOne.getNum();
+  empOne.getDate();
+  empOne.getShift();
+  empOne.getRate();
+  
+  cout << '\n';
+  cout << "Name: " << empOne.setName() << '\n';
+  cout << "Employee Number: " << empOne.setNum() << '\n';
+  cout << "Hire Date: " << empOne.setDate() << '\n';
+  cout << "Shift: " << empOne.setShift() << '\n';
+  cout << "Payrate: " << setprecision(2) << fixed << empOne.setRate() << '\n';
+  
+  cout << '\n';
+
+  ProductionWorker empTwo("Chicken Little", "12345", "01/15/1996", 2, 15.50);
+  
+
+
+
+
+
+return 0;
+}
