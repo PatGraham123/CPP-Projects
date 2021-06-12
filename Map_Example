@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+#include <map>
+using namespace std;
+
+int main() {
+
+map<string, string> room;
+room["CIS101"] = "3004";
+room["CIS102"] = "4501";
+room["CIS103"] = "6755";
+room["NT110"] = "1244";
+room["CM241"] = "1411";
+
+map<string, string> instructor;
+instructor["CIS101"] = "Haynes";
+instructor["CIS102"] = "Alvarado";
+instructor["CIS103"] = "Rich";
+instructor["NT110"] = "Burke";
+instructor["CM241"] = "Lee";
+
+map<string, string> time;
+time["CIS101"] = "8:00 AM";
+time["CIS102"] = "9:00 AM";
+time["CIS103"] = "10:00 AM";
+time["NT110"] = "11:00 AM";
+time["CM241"] = "1:00 PM";
+
+string course;
+
+cout << "Please enter the course number: ";
+getline(cin,course);
+
+cout << "Room Number: " << room.at(course) << '\n';
+cout << "Instructor: "<< instructor.at(course) << '\n';
+cout << "Meeting Time: "<< time.at(course) << '\n';
+
+return 0;
+}
