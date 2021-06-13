@@ -1,0 +1,72 @@
+#include <iostream>
+#include <string>
+#include <cstdlib> // rand()
+#include <ctime> //time()
+using namespace std;
+
+class Coin {
+public:
+int startingNum = 0;
+int randomNumber = 0;
+int heads = 0;
+int tails = 0;
+string sideUp;
+  //Constructor
+  Coin() 
+  {
+      srand (time(0));
+      startingNum = (rand() % RAND_MAX + 1);
+      if (startingNum % 2 == 0)
+      {
+        sideUp = "Heads";
+        cout << "The starting side of the coin is " << sideUp << "!" << '\n';
+      }
+      else
+      {
+        sideUp = "Tails";
+        cout << "The starting side of the coin is " << sideUp << "!" << '\n';
+      }
+  }
+  void toss () 
+  { 
+    randomNumber = (rand() % RAND_MAX + 1);
+    if (randomNumber % 2 == 0)
+      {
+        sideUp = "Heads";
+      }
+      else
+      {
+        sideUp = "Tails";
+      }
+  }
+
+  string getSideUp()
+  {
+    if (sideUp == "Heads")
+    {
+      heads++;
+      cout << sideUp << '\n';
+    }
+    else if (sideUp == "Tails")
+    {
+      tails++;
+      cout << sideUp << '\n';
+    }
+    return sideUp;
+  }
+};
+
+int main() {
+
+Coin coinObject;
+srand (time(0));
+for (int i = 0;i<20;i++)
+{ 
+  coinObject.toss();
+  coinObject.getSideUp();
+}
+cout << "Number of Heads = " << coinObject.heads << '\n';
+cout << "Number of Tails = " << coinObject.tails << '\n';
+
+return 0;
+}
