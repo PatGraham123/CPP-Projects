@@ -1,0 +1,279 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class DayOfYear {
+private:
+	int userNumber;
+
+public:
+	DayOfYear(int x);
+
+	static string months[12];
+	static void print(int x);
+};
+
+DayOfYear::DayOfYear(int x) {
+	x = userNumber;
+}
+void DayOfYear::print(int x) {
+	int day;
+	switch (x) {
+	// JANUARY
+	case 1 ... 31:
+		day = x;
+		cout << months[0] << " " << day;
+		break;
+	// FEBRUARY
+	// It Works!
+	case 32 ... 59:
+		day = x % 31;
+		cout << months[1] << " " << day;
+		break;
+  //MARCH
+	case 60 ... 89:
+		day = (x % 30) + 1;
+		cout << months[2] << " " << day;
+    break;
+  //MARCH 31  
+  case 90:
+    x = 31;
+    day = x;
+    cout << months[2] << " " << day;
+    break;
+  //APRIL
+  case 91 ... 119:
+    day = (x % 30);
+		cout << months[3] << " " << day;
+    break;
+  case 120:
+    x = 30;
+    day = x;
+    cout << months[3] << " " << day;
+    break;
+  case 121 ... 149:
+    day = (x % 30);
+		cout << months[4] << " " << day;
+    break;
+  case 150:
+    x = 30;
+    day = x;
+    cout << months[4] << " " << day;
+    break;
+  case 151:
+    x = 31;
+    day = x;
+		cout << months[4] << " " << day;
+    break;
+  case 152 ... 179:
+    day = (x % 30)-1;
+		cout << months[5] << " " << day;
+    break;
+  case 180:
+    x = 29;
+    day = x;
+    cout << months[5] << " " << day;
+    break;
+  case 181:
+    x = 30;
+    day = x;
+		cout << months[5] << " " << day;
+    break;
+  case 182 ... 209:
+    day = (x % 30)-1;
+		cout << months[6] << " " << day;
+    break;
+  case 210:
+    x = 29;
+    day = x;
+    cout << months[6] << " " << day;
+    break;
+  case 211:
+    x = 30;
+    day = x;
+		cout << months[6] << " " << day;
+    break;
+  case 212:
+    x = 31;
+    day = x;
+		cout << months[6] << " " << day;
+    break;
+  case 213 ... 239:
+    day = (x % 30)-2;
+		cout << months[7] << " " << day;
+    break;
+  case 240:
+    x = 28;
+    day = x;
+		cout << months[7] << " " << day;
+    break;
+  case 241:
+    x = 29;
+    day = x;
+		cout << months[7] << " " << day;
+    break;
+  case 242:
+    x = 30;
+    day = x;
+		cout << months[7] << " " << day;
+    break;
+  case 243:
+    x = 31;
+    day = x;
+		cout << months[7] << " " << day;
+    break;
+  case 244 ... 269:
+    day = (x % 30)-3;
+		cout << months[8] << " " << day;
+    break;
+  case 270:
+    x = 27;
+    day = x;
+		cout << months[8] << " " << day;
+    break;
+  case 271:
+    x = 28;
+    day = x;
+		cout << months[8] << " " << day;
+    break;
+  case 272:
+    x = 29;
+    day = x;
+		cout << months[8] << " " << day;
+    break;
+  case 273:
+    x = 30;
+    day = x;
+		cout << months[8] << " " << day;
+    break;
+  case 274 ... 299:
+    day = (x % 30)-3;
+		cout << months[9] << " " << day;
+    break;
+  case 300:
+    x = 27;
+    day = x;
+		cout << months[9] << " " << day;
+    break;
+  case 301:
+    x = 28;
+    day = x;
+		cout << months[9] << " " << day;
+    break;
+
+  case 302:
+    x = 29;
+    day = x;
+		cout << months[9] << " " << day;
+    break;
+  case 303:
+    x = 30;
+    day = x;
+		cout << months[9] << " " << day;
+    break;
+  case 304:
+    x = 31;
+    day = x;
+		cout << months[9] << " " << day;
+    break;
+  case 305 ... 329:
+    day = (x % 30)-4;
+		cout << months[10] << " " << day;
+    break;
+  case 330:
+    x = 26;
+    day = x;
+		cout << months[10] << " " << day;
+    break;
+  case 331:
+     x = 27;
+    day = x;
+		cout << months[10] << " " << day;
+    break;
+  case 332:
+    x = 28;
+    day = x;
+		cout << months[10] << " " << day;
+    break;
+  case 333:
+     x = 29;
+    day = x;
+		cout << months[10] << " " << day;
+    break;
+  case 334:
+     x = 30;
+    day = x;
+		cout << months[10] << " " << day;
+    break;
+  case 335 ... 359:
+    day = (x % 30)-4;
+		cout << months[11] << " " << day;
+    break;
+  case 360:
+    x = 26;
+    day = x;
+		cout << months[11] << " " << day;
+    break;
+  case 361:
+    x = 27;
+    day = x;
+		cout << months[11] << " " << day;
+    break;
+  case 362:
+    x = 28;
+    day = x;
+		cout << months[11] << " " << day;
+    break;
+  case 363:
+    x = 29;
+    day = x;
+		cout << months[11] << " " << day;
+    break;
+  case 364:
+    x = 30;
+    day = x;
+		cout << months[11] << " " << day;
+    break;
+  case 365:
+    x = 31;
+    day = x;
+		cout << months[11] << " " << day;
+    break;
+	}
+}
+
+string DayOfYear::months[12] = {
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December",
+};
+
+int main() {
+	int x = 0;
+	cout << "Please enter a day 1-365: ";
+	cin >> x;
+
+	// Creates an object and calls the constructor, passing it x.
+	DayOfYear obj(int x);
+	DayOfYear::print(x);
+
+	return 0;
+}
+
+/*
+12%12 = 0
+12%11 = 1
+12%10 = 2
+12%9 = 3
+
+
+*/
