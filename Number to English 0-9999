@@ -1,0 +1,124 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+class Numbers
+{
+
+private:
+    int number;
+
+public:
+
+    static string lessThan20[20];
+    static string tens[10];
+
+    
+    // Constructor
+    Numbers(int x)
+    { 
+      number = x;
+    }
+   
+    void print();
+};
+
+/* 
+  Static member variables must be defined 
+  outside of the class 
+*/
+
+string Numbers::lessThan20[20] = 
+			 { "zero", "one", "two", "three", "four", "five",
+			   "six", "seven", "eight", "nine", "ten", 
+			   "eleven", "twelve", "thirteen", "fourteen", 
+			   "fifteen", "sixteen", "seventeen", "eighteen",
+			   "nineteen", 
+			 };
+
+string Numbers::tens[10] = 
+			{ " ", "ten", "twenty", "thirty", "forty",
+			  "fifty", "sixty", "seventy", "eighty", "ninety",
+			};
+
+
+
+void Numbers::print()
+{
+    // REMAINDER FOR %
+    int remainder = number;
+	
+    // Make sure the number is within range.
+	if (remainder < 0 || remainder > 9999)
+	{
+		cout << "invalid input.";
+    
+	}
+	else
+	{
+		cout << "The English description is:";
+
+		if (number == 0)
+		{
+			cout << " zero";
+		}
+
+		// THOUSANDS
+		int thousands = remainder / 1000;
+		remainder %= 1000;
+
+		if (thousands > 0)
+		{
+			cout << " " << lessThan20[thousands];
+			cout << " " << "thousand";
+		}
+
+		// HUNDREDS
+		int hundreds = remainder / 100;
+		remainder %= 100;
+
+		if (hundreds > 0)
+		{
+			cout << " " << lessThan20[hundreds];
+			cout << " " << "hundred";
+		}
+
+		// LESS THAN 100
+		if (remainder >= 20)
+		{
+			int n_tens = remainder / 10;
+			remainder %= 10;
+
+			if (n_tens > 0)
+				cout << " " << tens[n_tens];
+		}
+
+		if (remainder > 0)
+		{
+			// lESS THAN 20
+			cout << " " << lessThan20[remainder];
+		}
+	}
+
+}
+
+// Demo program
+int main()
+{
+   int x;
+   
+
+	// Get input from the user.
+	cout << "Enter a whole dollar amount between 0 and 9999: ";
+	cin >> x;
+    
+	// Calls the constructor by creating an object and passes it the int x
+	Numbers obj(x);
+        
+
+
+	obj.print();
+
+    return 0;
+}
