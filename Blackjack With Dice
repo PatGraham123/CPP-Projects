@@ -1,0 +1,165 @@
+#include <iostream>
+#include <string>
+#include <cstdlib> // rand()
+#include <ctime> //time()
+#include <stdlib.h> //exit
+using namespace std;
+
+class Die
+{
+  public:
+  int cpuScore = 0;
+  int userScore = 0;
+
+  void resetScores()
+  {
+    int cpuScore = 0;
+    int userScore = 0;
+  }
+
+  int rollDiceCPU()
+  {
+    if (cpuScore < 21)
+    {
+      
+      int cpuDice = (rand() % 6 + 1);
+      cpuScore = cpuScore + cpuDice;
+      int cpuDiceTwo = (rand() % 6 + 1);
+      cpuScore = cpuScore + cpuDiceTwo;
+      //cout << "The CPU's score is " << cpuScore << '\n';
+
+    }
+
+    
+    return cpuScore;
+  }
+
+  int rollDiceUser()
+  {
+    
+    if (userScore < 21)
+    {
+      
+      srand (time(0));
+      int userDice = (rand() % 6 + 1);
+      userScore = userScore + userDice;
+      int userDiceTwo = (rand() % 6 + 1);
+      userScore = userScore + userDiceTwo;
+      if (userScore < 21)
+      {
+        cout << "the user's score is " << userScore;
+        cout << '\n';
+      }
+      else if (userScore > 21) 
+      {
+        cout << "User bust" << '\n';
+        
+        
+        
+      }
+    }
+    return userScore;
+  }
+
+  void getResults()
+  {
+    cout << '\n';
+    cout << "GAME RESULTS";
+    cout << '\n';
+    cout << "--------------------------------------" << '\n';
+    cout << '\n';
+    if (cpuScore > userScore && cpuScore <= 21)
+    {
+      cout << "CPU wins!" << '\n';
+    }
+    else if (cpuScore < userScore && userScore <= 21)
+    {
+      cout << "User wins!" << '\n';
+    }
+    else if (cpuScore > userScore && userScore <= 21 && cpuScore > 21)
+    {
+      cout << "User wins!" << '\n';
+    }
+    else if (cpuScore < userScore && cpuScore <= 21 && userScore > 21)
+    {
+      cout << "CPU wins!" << '\n';
+    }
+    else if (cpuScore == userScore && cpuScore <= 21)
+    {
+      cout << "CPU wins!" << '\n';
+    }
+    else if (cpuScore > 21 && userScore > 21)
+    {
+      cout << "You both busted!" << '\n';
+    }
+
+  }
+};
+
+
+
+int main() {
+  char goAgain = 'Y';
+  
+  int loop = 0;
+  Die objectOne;
+
+  while (goAgain == 'Y'|| goAgain == 'y')
+  {
+    if (loop == 0)
+    {
+      objectOne.rollDiceCPU();
+      objectOne.rollDiceUser();
+      cout << '\n';
+    }
+    if (objectOne.userScore <= 20)
+    {
+      cout << "Would you like to roll the dice? (Y/N)" << '\n';
+      cin >> goAgain;
+      loop++;
+      if (goAgain == 'Y'|| goAgain == 'y')
+      {
+        objectOne.rollDiceCPU();
+        objectOne.rollDiceUser();
+      }
+    }
+    else 
+    {
+      goAgain = 'N';
+    }
+  }
+  if (goAgain != 'Y' || goAgain != 'y')
+  {
+    if (objectOne.userScore <= 21)
+    {
+      cout << '\n';
+      cout << '\n';
+      cout << "the user's score is " << objectOne.userScore << '\n';
+      cout << "The CPU's score is " << objectOne.cpuScore << '\n';
+    }
+    else
+    {
+      cout << '\n';
+      cout << '\n';
+      cout << "User bust" << '\n';
+      if (objectOne.cpuScore <= 21)
+      {
+        cout << "The CPU's score is " << objectOne.cpuScore << '\n';
+      }
+      else
+      {
+        cout << "CPU bust" << '\n';
+      }
+    }
+    
+  }
+  objectOne.getResults();
+  
+  
+
+
+
+
+
+return 0;
+}
