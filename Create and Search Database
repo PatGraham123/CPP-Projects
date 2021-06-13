@@ -1,0 +1,237 @@
+#include <iostream>
+#include <iomanip> //For number formatting.
+#include <string>
+using namespace std;
+
+/* This program lets the user enter data about a customer and once this data is entered, gives the user the ability to search for specific strings to find a customer by name (first or last!) or view all data.
+*/
+
+
+//Structures
+struct customerInfo
+{  
+   string name;
+   string address;
+   string city;
+   string state;
+   string zip;
+   string phone;
+   double acctBalance;
+   string dateOfPayment;
+   int displayCount = 0;
+};
+
+//Function Protypes
+void enterInfo(int number,string confirm, customerInfo input[],int size);
+void displayAllInfo(int number, customerInfo *ptrCustInfo,int size);
+
+
+
+//Main
+int main() {
+int size;
+int number;
+string runAgain;
+string confirm;
+int displayLoop = 0;
+string search;
+
+
+
+
+cout << "Would you like to enter customer data? (Y/N) ";
+getline(cin,confirm);
+
+
+if (confirm == "Y" || confirm == "y")
+{
+  //Max is 10 for readability sake
+  cout << "Please enter the number of customers (Max: 10) ";
+  cin >> size;
+
+  while (size > 10)
+  {
+    cout << "Please enter the number of customers (Max: 10) ";
+    cin >> size;
+  }
+  
+  customerInfo input[size];
+  customerInfo *ptrCustInfo = nullptr;
+  ptrCustInfo = input;
+  cin.ignore();
+
+  while (confirm == "Y" || confirm == "y")
+  {
+    cout << "Which customer would you like to enter data for" << '\n';
+    cout << '\n';
+    cout << '\n';
+    if (displayLoop != 0)
+    { 
+      cout << "---------------------------------" << '\n'; 
+      cout << "| Enter 0 to search for a customer by name." << '\n';
+      cout << "| Enter -99 to display all customers." << '\n';
+    }
+    for (int loop = 0;loop<size;loop++)
+    {
+      cout << "---------------------------------" << '\n';
+      cout << "| Customer " << (loop + 1) << '\n';
+      if (loop == size -1)
+      {
+        cout << "---------------------------------" << '\n';
+      }
+    }
+  
+    cin >> number;
+    //Input Validation
+    while ((number != -99 && number < 0) || number > size)
+    {
+      cout << "Please enter a valid customer number";
+      cout << '\n';
+      cin >> number;
+    }
+    cin.ignore();
+
+    if (number >= 1 && number <=size)
+    {
+      enterInfo(number,confirm,ptrCustInfo,size);
+    }
+    if (number == -99)
+    {
+      displayAllInfo(number, ptrCustInfo, size);
+    }
+    if (number == 0)
+    {
+      cout << "Please enter the name to search" << '\n';
+      getline(cin,search);
+    
+      int notFound = -1;
+      for (int j = 0;j<size;j++)
+      { 
+        // The find() function is a lifesaver!
+        int found=ptrCustInfo[j].name.find(search);
+      
+        if (found != -1)
+        {   
+          cout << "------------------------------" << '\n';
+          cout << "Customer " << int(j+1) << endl;
+          cout << ptrCustInfo[j].name << '\n';
+          cout << ptrCustInfo[j].address << '\n';
+          cout << ptrCustInfo[j].city << ", " << ptrCustInfo[j].state     << " " << ptrCustInfo[j].zip << '\n';
+          cout << ptrCustInfo[j].phone << '\n';
+          cout << fixed << setprecision(2) << ptrCustInfo[j].acctBalance << '\n';
+          cout << '\n';
+          notFound++;
+        }
+      
+      }
+
+      if(notFound == -1)
+      {
+        cout << "No customers matched your search" << '\n';
+        cout << '\n';
+      }
+    
+
+    }
+    cout << "Would you like to edit/view more customer data? (Y/N) ";
+    getline(cin,confirm);
+    cout << string(50, '\n');
+
+  
+  
+
+    displayLoop++;
+  }
+}
+//End While Loop (This was a long one)
+
+if (confirm != "y" || confirm != "Y")
+{
+  cout << "Thank your for using my program. Have a nice day!";
+}
+
+
+
+return 0;
+}
+//End Main
+
+void enterInfo(int number,string confirm, customerInfo *ptrCustInfo,int size)
+{
+    
+    
+  //Name Input
+
+  cout << "Please enter the name of customer " << (number) << '\n';
+   getline(cin,ptrCustInfo[number-1].name);
+
+  //Address Input
+
+  cout << "Please enter a street address for " << ptrCustInfo[number-1].name << '\n';
+  getline(cin,ptrCustInfo[number-1].address);
+
+  //City Input
+
+  cout << "Please enter a city for " << ptrCustInfo[number-1].name << '\n';
+  getline(cin,ptrCustInfo[number-1].city);
+
+  //State Input
+
+  cout << "Please enter a state for " << ptrCustInfo[number-1].name << '\n';
+  getline(cin,ptrCustInfo[number-1].state);
+
+  //ZIP Input
+
+  cout << "Please enter a ZIP for " << ptrCustInfo[number-1].name << '\n';
+  getline(cin,ptrCustInfo[number-1].zip);
+
+  //Phone Input
+
+  cout << "Please enter a phone number for " << ptrCustInfo[number-1].name << " seperated by dashes" << '\n';
+  cout << "ex: (815-555-5555)" <<'\n';
+  getline(cin,ptrCustInfo[number-1].phone);
+
+  //Account Balance Input
+
+  cout << "Please enter the account balance for " << ptrCustInfo[number-1].name << '\n';
+  cin >> ptrCustInfo[number-1].acctBalance;
+
+  //Account Balance Input Validation
+
+  while (ptrCustInfo[number-1].acctBalance < 0)
+  {
+    cout << "Please enter the account balance for " << ptrCustInfo[number-1].name << '\n';
+    cin >> ptrCustInfo[number-1].acctBalance;
+  }
+  // Because we mixed cin and getline.
+  cin.ignore();
+
+  //Phone Input
+
+  cout << "Please enter the last date of payment for " << ptrCustInfo[number-1].name << " seperated by forward slashes" << '\n' <<  "(03/13/1996)" <<'\n';
+  getline(cin,ptrCustInfo[number-1].dateOfPayment);
+  cout << '\n';
+    
+
+    
+
+
+    
+    
+    
+}
+
+void displayAllInfo(int number, customerInfo *ptrCustInfo,int size)
+{
+   for (int i = 0;i<size;i++)
+   { 
+     cout << "-----------------------------------------------------";
+     cout << '\n';
+     cout << ptrCustInfo[i].name << '\n';
+     cout << ptrCustInfo[i].address << '\n';
+     cout << ptrCustInfo[i].city << ", " << ptrCustInfo[i].state << " " << ptrCustInfo[i].zip << '\n';
+     cout << ptrCustInfo[i].phone << '\n';
+     cout << fixed << setprecision(2) << ptrCustInfo[i].acctBalance << '\n';
+   }
+}
+
